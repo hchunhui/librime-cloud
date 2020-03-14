@@ -1,0 +1,20 @@
+language: cpp
+os: linux
+compiler: gcc
+dist: trusty
+
+install:
+#- sudo apt-get update -qq
+- sudo apt-get install -qq build-essential mingw-w64 --no-install-recommends
+
+script:
+- make
+
+after_success:
+ - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+ - bash upload.sh win32.zip linux-x86_64.tar.gz
+
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous.*)$/
