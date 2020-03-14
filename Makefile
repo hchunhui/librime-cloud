@@ -27,10 +27,10 @@ out-linux: luasocket thirdparty
 	cp -r scripts/* out-linux
 
 linux: out-linux
-	cd out-linux; tar czvf ../linux.tar.gz *
+	cd out-linux; tar czvf ../linux-`uname -m`.tar.gz *
 
 win32: out-mingw
 	cd out-mingw; zip -r ../win32.zip *
 
 clean:
-	rm -rf out-mingw out-linux
+	rm -rf out-mingw out-linux linux-*.tar.gz win32.zip
