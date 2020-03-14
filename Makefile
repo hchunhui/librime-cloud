@@ -1,8 +1,8 @@
 CC_mingw=i686-w64-mingw32-gcc
 LUAINC=${PWD}/thirdparty/lua5.3
 LUALIB="-L${PWD}/librime/dist/lib -lrime"
-INSTALL_mingw_DIR=${PWD}/out-mingw/lua
-INSTALL_linux_DIR=${PWD}/out-linux/lua
+INSTALL_mingw_DIR=${PWD}/out-mingw
+INSTALL_linux_DIR=${PWD}/out-linux
 
 all: linux win32
 
