@@ -19,18 +19,16 @@ thirdparty:
 out-mingw: luasocket thirdparty librime
 	make CC_mingw=${CC_mingw} LD_mingw=${CC_mingw} LUAINC_mingw=${LUAINC} LUALIB_mingw=${LUALIB} -C luasocket clean mingw
 	make SO=dll INSTALL_TOP_CDIR=${INSTALL_mingw_DIR} INSTALL_TOP_LDIR=${INSTALL_mingw_DIR} -C luasocket/src install
-	cp -r scripts/* out-mingw/
 
 out-linux: luasocket thirdparty
 	make LUAINC_linux=${LUAINC} -C luasocket clean linux
 	make INSTALL_TOP_CDIR=${INSTALL_linux_DIR} INSTALL_TOP_LDIR=${INSTALL_linux_DIR} -C luasocket/src install
-	cp -r scripts/* out-linux
 
 linux: out-linux
-	cd out-linux; tar czvf ../linux-`uname -m`.tar.gz *
+	tar czvf linux-`uname -m`.tar.gz out-linux scripts
 
 win32: out-mingw
-	cd out-mingw; zip -r ../win32.zip *
+	zip -r win32.zip out-mingw scripts
 
 clean:
 	rm -rf out-mingw out-linux linux-*.tar.gz win32.zip
