@@ -25,10 +25,10 @@ out-linux: luasocket thirdparty
 	make INSTALL_TOP_CDIR=${INSTALL_linux_DIR} INSTALL_TOP_LDIR=${INSTALL_linux_DIR} -C luasocket/src install
 
 linux: out-linux
-	tar czvf linux-`uname -m`.tar.gz out-linux scripts
+	tar czvf linux-`uname -m`.tar.gz out-linux scripts README.md
 
 win32: out-mingw
-	zip -r win32.zip out-mingw scripts
+	zip -r win32.zip out-mingw scripts README.md
 
 clean:
 	rm -rf out-mingw out-linux linux-*.tar.gz win32.zip
