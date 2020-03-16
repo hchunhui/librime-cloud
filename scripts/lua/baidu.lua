@@ -13,7 +13,7 @@ local function translator(input, seg)
    local _, j = pcall(json.decode, reply)
    if j.status == "T" and j.result and j.result[1] then
       for i, v in ipairs(j.result[1]) do
-	 c = Candidate("simple", seg.start, seg.start + v[2], v[1], "(百度云拼音)")
+	 local c = Candidate("simple", seg.start, seg.start + v[2], v[1], "(百度云拼音)")
 	 c.quality = 2
 	 if string.gsub(v[3].pinyin, "'", "") == string.sub(input, 1, v[2]) then
 	    c.preedit = string.gsub(v[3].pinyin, "'", " ")
