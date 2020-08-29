@@ -1,4 +1,4 @@
-CC_mingw=i686-w64-mingw32-gcc
+CC_mingw="i686-w64-mingw32-gcc -DLUASOCKET_INET_PTON"
 LUAV?=5.3
 LUAINC=${PWD}/thirdparty/lua${LUAV}
 LUALIB="-L${PWD}/librime/dist/lib -lrime"
