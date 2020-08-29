@@ -12,7 +12,7 @@ script:
 - make LUAV=5.3
 - mv win32*.zip linux*.tar.gz out
 - make clean
-- make LUAV=5.4
+- make LUAV=5.4 linux
 - mv win32*.zip linux*.tar.gz out
 
 after_success:
