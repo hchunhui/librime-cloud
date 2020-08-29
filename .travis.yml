@@ -8,11 +8,16 @@ install:
 - sudo apt-get install -qq build-essential mingw-w64 --no-install-recommends
 
 script:
-- make
+- mkdir -p out
+- make LUAV=5.3
+- mv win32*.zip linux*.tar.gz out
+- make clean
+- make LUAV=5.4
+- mv win32*.zip linux*.tar.gz out
 
 after_success:
  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
- - bash upload.sh win32.zip linux-x86_64.tar.gz
+ - bash upload.sh out/win32*.zip out/linux-x86_64*.tar.gz
 
 branches:
   except:

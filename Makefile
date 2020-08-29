@@ -1,5 +1,6 @@
 CC_mingw=i686-w64-mingw32-gcc
-LUAINC=${PWD}/thirdparty/lua5.3
+LUAV?=5.3
+LUAINC=${PWD}/thirdparty/lua${LUAV}
 LUALIB="-L${PWD}/librime/dist/lib -lrime"
 INSTALL_mingw_DIR=${PWD}/out-mingw
 INSTALL_linux_DIR=${PWD}/out-linux
@@ -25,10 +26,10 @@ out-linux: luasocket thirdparty
 	make INSTALL_TOP_CDIR=${INSTALL_linux_DIR} INSTALL_TOP_LDIR=${INSTALL_linux_DIR} -C luasocket/src install
 
 linux: out-linux
-	tar czvf linux-`uname -m`.tar.gz out-linux scripts README.md
+	tar czvf linux-`uname -m`-lua${LUAV}.tar.gz out-linux scripts README.md
 
 win32: out-mingw
-	zip -r win32.zip out-mingw scripts README.md
+	zip -r win32-lua${LUAV}.zip out-mingw scripts README.md
 
 clean:
-	rm -rf out-mingw out-linux linux-*.tar.gz win32.zip
+	rm -rf out-mingw out-linux linux-*.tar.gz win32-*.zip

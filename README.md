@@ -15,7 +15,7 @@
        - 将 `out-mingw` 下所有文件复制到小狼毫的程序文件夹下
        - 将 `scripts` 下所有文件复制到小狼毫的用户目录下
      - Linux 平台（librime 需编译 lua 支持）
-       - 将 `out-linux` 下所有文件复制到 `/usr/local/lib/lua/5.3` 下
+       - 将 `out-linux` 下所有文件复制到 `/usr/local/lib/lua/$LUAV` 下
        - 将 `scripts` 下所有文件复制到用户目录下
   3. 配置：见 `scripts/rime.lua` 中的注释
 
