@@ -12,8 +12,8 @@ script:
 - make LUAV=5.3
 - mv win32*.zip linux*.tar.gz out
 - make clean
-- make LUAV=5.4 linux
-- mv linux*.tar.gz out
+- make LUAV=5.4
+- mv win32*.zip linux*.tar.gz out
 
 after_success:
  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
