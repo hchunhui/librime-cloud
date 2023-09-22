@@ -22,6 +22,8 @@ curl-${CURLV}:
 	wget https://curl.se/download/curl-${CURLV}.tar.gz
 	tar xvf curl-${CURLV}.tar.gz
 
+prepare: librime-lua5.4 thirdparty curl-${CURLV}
+
 curl-${CURLV}/lib/.libs:
 	cd curl-${CURLV} && sh ../tinycurl.sh
 

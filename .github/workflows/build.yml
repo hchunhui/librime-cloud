@@ -1,0 +1,27 @@
+name: build
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: build docker image
+      run: docker build -t build .
+
+    - name: prepare
+      run: cd lib && make prepare && cd ..
+
+    - name: build in docker image
+      run: docker run -v $PWD:/work --rm build bash -c "cd /work && make"
+
+    - name: release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh && bash upload.sh win32*.zip linux-x86_64*.tar.gz
