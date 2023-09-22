@@ -1,9 +1,9 @@
 local json = require("json")
-local http = require("socket.http")
+local http = require("simplehttp")
 http.TIMEOUT = 0.5
 
 local function make_url(input, bg, ed)
-   return 'http://olime.baidu.com/py?input=' .. input ..
+   return 'https://olime.baidu.com/py?input=' .. input ..
       '&inputtype=py&bg='.. bg .. '&ed='.. ed ..
       '&result=hanzi&resultcoding=utf-8&ch_en=0&clientinfo=web&version=1'
 end
