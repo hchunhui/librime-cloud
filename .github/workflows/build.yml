@@ -55,4 +55,4 @@ jobs:
     - name: release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh && bash upload.sh win32*.zip linux-x86_64*.tar.gz macos*.tar.gz
+      run: wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh && bash upload.sh artifact/*
