@@ -21,7 +21,38 @@ jobs:
     - name: build in docker image
       run: docker run -v $PWD:/work --rm build bash -c "cd /work && make"
 
+    - name: upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        path: |
+          linux*.tar.gz
+          win32*.zip
+
+  build_macos:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: build
+      run: make macos
+
+    - name: upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        path: macos*.tar.gz
+
+  release:
+    needs: [ build , build_macos ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        path: .
+
     - name: release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh && bash upload.sh win32*.zip linux-x86_64*.tar.gz
+      run: wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh && bash upload.sh win32*.zip linux-x86_64*.tar.gz macos*.tar.gz
