@@ -10,5 +10,10 @@ win32:
 	rm -rf out-mingw && mkdir out-mingw && cp lib/simplehttp.dll out-mingw
 	zip -r win32-lua5.4.zip out-mingw scripts README.md
 
+macos:
+	cd lib && make PLAT=macos clean simplehttp.so
+	rm -rf out-macos && mkdir out-macos && cp lib/simplehttp.so out-macos
+	tar czvf macos-`uname -m`-lua5.4.tar.gz out-macos scripts README.md
+
 clean:
-	rm -rf out-mingw out-linux linux-*.tar.gz win32-*.zip
+	rm -rf out-mingw out-linux out-macos linux-*.tar.gz win32-*.zipa macos-*.tar.gz

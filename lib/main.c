@@ -128,9 +128,13 @@ static bool init(Context *curl)
 		return true;
 #ifndef _WIN32
 #define LOAD(x) if (!(curl->x = dlsym(curl->handle, "curl_" # x))) return false
+#ifdef __APPLE__
+	curl->handle = dlopen("/usr/lib/libcurl.4.dylib", RTLD_LAZY);
+#else
 	curl->handle = dlopen("libcurl.so.4", RTLD_LAZY);
 	if (!curl->handle)
 		curl->handle = dlopen("libcurl-gnutls.so.4", RTLD_LAZY);
+#endif
 	if (!curl->handle)
 		return false;
 	LOAD(global_init);
