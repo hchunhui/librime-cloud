@@ -17,14 +17,14 @@ LDFLAGS = ${LDFLAGS_${PLAT}}
 all: simplehttp.so simplehttp.dll
 
 librime-lua5.4:
-	curl -O https://github.com/rime/librime/releases/download/1.7.3/rime-with-plugins-1.7.3-win32.zip
+	curl -L -O https://github.com/rime/librime/releases/download/1.7.3/rime-with-plugins-1.7.3-win32.zip
 	unzip rime-with-plugins-1.7.3-win32.zip -d librime-lua5.4
 
 thirdparty:
 	git clone -b thirdparty http://github.com/hchunhui/librime-lua.git thirdparty
 
 curl-${CURLV}:
-	curl -O https://curl.se/download/curl-${CURLV}.tar.gz
+	curl -L -O https://curl.se/download/curl-${CURLV}.tar.gz
 	tar xvf curl-${CURLV}.tar.gz
 
 prepare: librime-lua5.4 thirdparty curl-${CURLV}
