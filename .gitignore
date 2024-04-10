@@ -1,0 +1,4 @@
+*.so
+*.dSYM
+*.tar.gz
+lib/curl*

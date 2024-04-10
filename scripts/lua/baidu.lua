@@ -9,7 +9,8 @@ local function make_url(input, bg, ed)
 end
 
 local function translator(input, seg)
-   local reply = http.request(make_url(input, 0, 5))
+   local url = make_url(input, 0, 5)
+   local reply = http.request(url)
    local _, j = pcall(json.decode, reply)
    if j.status == "T" and j.result and j.result[1] then
       for i, v in ipairs(j.result[1]) do
