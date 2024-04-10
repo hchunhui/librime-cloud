@@ -17,6 +17,9 @@
      - Linux 平台（librime 需编译 lua 支持）
        - 将 `out-linux` 下所有文件复制到 `/usr/local/lib/lua/$LUAV` 下
        - 将 `scripts` 下所有文件复制到用户目录下
+     - macOS 平台（小企鹅）
+       - 将 `out-macos` 下所有文件复制到 `/usr/local/lib/lua/$LUAV` 下
+       - 将 `scripts` 下所有文件复制到 `~/.local/share/fcitx5/rime` 下
   3. 配置：见 `scripts/rime.lua` 中的注释
 
 ## 使用
