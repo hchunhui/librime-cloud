@@ -6,9 +6,10 @@ linux:
 	tar czvf linux-`uname -m`-lua5.4.tar.gz out-linux scripts README.md
 
 win32:
-	cd lib && make clean simplehttp.dll
+	cd lib && make clean simplehttp.dll simplehttpx64.dll
 	rm -rf out-mingw && mkdir out-mingw && cp lib/simplehttp.dll out-mingw
-	zip -r win32-lua5.4.zip out-mingw scripts README.md
+	rm -rf out-mingw64 && mkdir out-mingw64 && cp lib/simplehttpx64.dll out-mingw64/simplehttp.dll
+	zip -r win32-lua5.4.zip out-mingw out-mingw64 scripts README.md
 
 macos:
 	cd lib && make PLAT=macos clean simplehttp.so
