@@ -7,7 +7,7 @@ LUAINC = thirdparty/lua${LUAV}
 LUALIB = -Llibrime-lua${LUAV}/dist/lib -lrime
 LUALIB64 = -Llibrime-lua${LUAV}-x64/dist/lib -lrime
 
-CURLV ?= 8.4.0
+CURLV ?= 8.11.1
 CURLINC = curl-${CURLV}/include
 CURLLIB = -Lcurl-${CURLV}/build32/lib/.libs -lcurl -lws2_32 -lcrypt32 -lbcrypt
 CURLLIB64 = -Lcurl-${CURLV}/build64/lib/.libs -lcurl -lws2_32 -lcrypt32 -lbcrypt
