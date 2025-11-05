@@ -8,8 +8,11 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [linux, win32]
 
     steps:
     - uses: actions/checkout@v3
@@ -21,21 +24,21 @@ jobs:
       run: cd lib && make prepare && cd ..
 
     - name: build in docker image
-      run: docker run -v $PWD:/work --rm build bash -c "cd /work && make"
+      run: docker run -v $PWD:/work --rm build bash -c "cd /work && make ${{ matrix.os }}"
 
     - name: upload artifacts
       uses: actions/upload-artifact@v4
       with:
+        name: ${{ matrix.os }}
         path: |
-          linux*.tar.gz
-          win32*.zip
+          ${{ matrix.os }}*.zip
+          ${{ matrix.os }}*.tar.gz
 
   build_macos:
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-14, macos-13] # arm and x86
+        os: [macos-14, macos-13]
 
     steps:
     - uses: actions/checkout@v3
@@ -46,6 +49,7 @@ jobs:
     - name: upload artifacts
       uses: actions/upload-artifact@v4
       with:
+        name: ${{ matrix.os }}
         path: macos*.tar.gz
 
   release:
