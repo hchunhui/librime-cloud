@@ -3,6 +3,8 @@ name: build
 on:
   push:
     branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -22,7 +24,7 @@ jobs:
       run: docker run -v $PWD:/work --rm build bash -c "cd /work && make"
 
     - name: upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         path: |
           linux*.tar.gz
@@ -42,13 +44,14 @@ jobs:
       run: make macos
 
     - name: upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         path: macos*.tar.gz
 
   release:
     needs: [ build , build_macos ]
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/master')
     steps:
     - name: download artifacts
       uses: actions/download-artifact@v3
