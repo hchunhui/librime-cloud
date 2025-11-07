@@ -1,4 +1,9 @@
 *.so
+*.dll
 *.dSYM
 *.tar.gz
 lib/curl*
+lib/lua-iconv*
+lib/libiconv*
+lib/librime-*
+lib/thirdparty

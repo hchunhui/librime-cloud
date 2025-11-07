@@ -42,4 +42,4 @@ mkdir -p build64 && cd build64 && ../configure --host x86_64-w64-mingw32 \
 --without-zlib \
 --without-zstd \
 --with-schannel \
-&& make
+&& make -j$(nproc)

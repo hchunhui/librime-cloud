@@ -5,6 +5,7 @@
 --- 分别加到输入方案的 engine/translators 和 engine/processors 中
 local cloud_pinyin_provider = require("baidu")
 -- local cloud_pinyin_provider = require("google")
+-- local cloud_pinyin_provider = require("sougou")
 local cloud_pinyin = require("trigger")("Control+t", cloud_pinyin_provider)
 cloud_pinyin_translator = cloud_pinyin.translator
 cloud_pinyin_processor = cloud_pinyin.processor
