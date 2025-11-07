@@ -60,7 +60,8 @@ jobs:
     - name: download artifacts
       uses: actions/download-artifact@v4
       with:
-        path: .
+        path: artifact
+        merge-multiple: true
 
     - name: release
       env:
